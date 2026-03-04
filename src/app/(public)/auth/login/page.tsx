@@ -51,7 +51,7 @@ const handleSubmit = (e: React.FormEvent) => {
   // --- LOGIN ADMIN ---
   if (view === "login" && email === "admin@nanicosmetico.com" && password === "admin123") {
     // Aqui você poderia salvar estado de admin se quiser
-    router.push("/dashboard"); 
+    router.push("/admin/dashboard"); 
     return; // Para não continuar com lógica de cliente
   }
 
