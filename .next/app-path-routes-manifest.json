@@ -1,0 +1,17 @@
+{
+  "/(admin)/adm/page": "/adm",
+  "/(admin)/darshboard/page": "/darshboard",
+  "/(admin)/orders/page": "/orders",
+  "/(public)/auth/login/page": "/auth/login",
+  "/(public)/products/[id]/page": "/products/[id]",
+  "/(public)/products/carrinho/page": "/products/carrinho",
+  "/(public)/products/checkout/page": "/products/checkout",
+  "/(public)/products/page": "/products",
+  "/(public)/profile/orders/page": "/profile/orders",
+  "/(public)/profile/page": "/profile",
+  "/(public)/profile/wishlist/page": "/profile/wishlist",
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/favicon.ico/route": "/favicon.ico",
+  "/page": "/"
+}

@@ -1,0 +1,17 @@
+{
+  "/(admin)/adm/page": "app/(admin)/adm/page.js",
+  "/(admin)/darshboard/page": "app/(admin)/darshboard/page.js",
+  "/(admin)/orders/page": "app/(admin)/orders/page.js",
+  "/(public)/auth/login/page": "app/(public)/auth/login/page.js",
+  "/(public)/products/[id]/page": "app/(public)/products/[id]/page.js",
+  "/(public)/products/carrinho/page": "app/(public)/products/carrinho/page.js",
+  "/(public)/products/checkout/page": "app/(public)/products/checkout/page.js",
+  "/(public)/products/page": "app/(public)/products/page.js",
+  "/(public)/profile/orders/page": "app/(public)/profile/orders/page.js",
+  "/(public)/profile/page": "app/(public)/profile/page.js",
+  "/(public)/profile/wishlist/page": "app/(public)/profile/wishlist/page.js",
+  "/_global-error/page": "app/_global-error/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/page": "app/page.js"
+}

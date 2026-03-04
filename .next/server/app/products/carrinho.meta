@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(public)/layout,_N_T_/(public)/products/layout,_N_T_/(public)/products/carrinho/layout,_N_T_/(public)/products/carrinho/page,_N_T_/products/carrinho"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KHB1YmxpYyk/products/carrinho/__PAGE__",
+    "/!KHB1YmxpYyk/products/carrinho",
+    "/!KHB1YmxpYyk/products",
+    "/!KHB1YmxpYyk",
+    "/_index"
+  ]
+}
