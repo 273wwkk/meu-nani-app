@@ -32,71 +32,82 @@ function LoginForm() {
     // setPassword(""); 
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
-    setSuccessMessage("");
-
-    // --- LÓGICA DE LOGIN ---
-    if (view === "login") {
-      const storedUserJSON = localStorage.getItem(`user_${email}`);
-
-      if (!storedUserJSON) {
-        setError("Esta conta não existe. Crie uma conta primeiro.");
-        return;
-      }
-
-      const storedUser = JSON.parse(storedUserJSON);
-
-      if (storedUser.password !== password) {
-        setError("A palavra-passe está incorreta.");
-        return;
-      }
-
-      login(storedUser.name, email);
-      const destination = returnTo || "/products";
-      router.push(destination); 
-    } 
-    
-    // --- LÓGICA DE REGISTO ---
-    else if (view === "register") {
-      if (localStorage.getItem(`user_${email}`)) {
-        setError("Este email já está registado. Faça login.");
-        return;
-      }
-
-      const newUser = { name, email, password };
-      localStorage.setItem(`user_${email}`, JSON.stringify(newUser));
-
-      login(name, email);
-      setIsSuccess(true);
-    }
-
-    // --- LÓGICA DE RECUPERAÇÃO DE SENHA ---
-    else if (view === "forgot") {
-      const storedUserJSON = localStorage.getItem(`user_${email}`);
-      
-      if (!storedUserJSON) {
-        setError("Não encontramos nenhuma conta com este email.");
-        return;
-      }
-
-      // Atualiza a senha do usuário existente
-      const userData = JSON.parse(storedUserJSON);
-      userData.password = password; // Define a nova senha
-      localStorage.setItem(`user_${email}`, JSON.stringify(userData));
-
-      setSuccessMessage("Senha redefinida com sucesso! Faça login agora.");
-      switchView("login"); // Volta para o login automaticamente
-      setPassword(""); // Limpa o campo da senha para ele digitar a nova
-    }
-  };
-
   const handleFinalSuccessRedirect = () => {
+  // Admin sempre vai para o dashboard
+  if (email === "admin@nanicosmetico.com" && password === "admin123") {
+    router.push("/dashboard");
+  } else {
+    // Clientes normais
     const destination = returnTo || "/products";
     router.push(destination);
-  };
+  }
+};
 
+const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault();
+  setError("");
+  setSuccessMessage("");
+
+  // --- LOGIN ADMIN ---
+  if (view === "login" && email === "admin@nanicosmetico.com" && password === "admin123") {
+    // Aqui você poderia salvar estado de admin se quiser
+    router.push("/dashboard"); 
+    return; // Para não continuar com lógica de cliente
+  }
+
+  // --- LOGIN CLIENTE ---
+  if (view === "login") {
+    const storedUserJSON = localStorage.getItem(`user_${email}`);
+
+    if (!storedUserJSON) {
+      setError("Esta conta não existe. Crie uma conta primeiro.");
+      return;
+    }
+
+    const storedUser = JSON.parse(storedUserJSON);
+
+    if (storedUser.password !== password) {
+      setError("A palavra-passe está incorreta.");
+      return;
+    }
+
+    login(storedUser.name, email);
+    const destination = returnTo || "/products";
+    router.push(destination); 
+  } 
+  
+  // --- REGISTRO DE NOVO CLIENTE ---
+  else if (view === "register") {
+    if (localStorage.getItem(`user_${email}`)) {
+      setError("Este email já está registado. Faça login.");
+      return;
+    }
+
+    const newUser = { name, email, password };
+    localStorage.setItem(`user_${email}`, JSON.stringify(newUser));
+
+    login(name, email);
+    setIsSuccess(true); // Mostra tela de sucesso
+  }
+
+  // --- RECUPERAÇÃO DE SENHA ---
+  else if (view === "forgot") {
+    const storedUserJSON = localStorage.getItem(`user_${email}`);
+    
+    if (!storedUserJSON) {
+      setError("Não encontramos nenhuma conta com este email.");
+      return;
+    }
+
+    const userData = JSON.parse(storedUserJSON);
+    userData.password = password; // Atualiza senha
+    localStorage.setItem(`user_${email}`, JSON.stringify(userData));
+
+    setSuccessMessage("Senha redefinida com sucesso! Faça login agora.");
+    switchView("login"); // Volta para login
+    setPassword(""); // Limpa campo
+  }
+};
   
 
   return (
